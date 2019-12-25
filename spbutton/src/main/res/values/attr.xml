@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="spView">
+    <declare-styleable name="SProgressButton">
         <attr name="ModeStyle" format="enum">
             <enum name="Normal" value="0"/>
             <enum name="HideText" value="1"/>

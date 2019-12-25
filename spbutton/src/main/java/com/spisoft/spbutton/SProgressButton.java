@@ -18,7 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.core.widget.ContentLoadingProgressBar;
 
-public class spView extends RelativeLayout {
+public class SProgressButton extends RelativeLayout {
     private View rootView;
     private LinearLayout mIT;
     private ImageView mIcon;
@@ -32,23 +32,23 @@ public class spView extends RelativeLayout {
     private boolean mColorSet = false;
     private int mModeStyle = 0;
 
-    public spView(Context context) {
+    public SProgressButton(Context context) {
         super(context);
         initView(context, null, -1);
     }
 
-    public spView(Context context, AttributeSet attrs) {
+    public SProgressButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs, -1);
     }
 
-    public spView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SProgressButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context, attrs, defStyleAttr);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public spView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SProgressButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
     //-------------------------------------------------------
@@ -69,11 +69,11 @@ public class spView extends RelativeLayout {
 //        mIconFail = context.getResources().getDrawable(R.drawable.ic_report_red_a700_24dp);
 
         if(attrs != null){
-            final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.spView, 0, 0);
+            final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SProgressButton, 0, 0);
 
-            mColorSet = typedArray.getBoolean(R.styleable.spView_ColorSet, false);
+            mColorSet = typedArray.getBoolean(R.styleable.SProgressButton_ColorSet, false);
 
-            int atModeIconPosition = typedArray.getInt(R.styleable.spView_ModeIconPosition, 0);
+            int atModeIconPosition = typedArray.getInt(R.styleable.SProgressButton_ModeIconPosition, 0);
             switch (atModeIconPosition){
                 case 0:
                     mIT.setLayoutDirection(LAYOUT_DIRECTION_LTR);
@@ -93,45 +93,43 @@ public class spView extends RelativeLayout {
                     break;
             }
 
-            mModeStyle = typedArray.getInt(R.styleable.spView_ModeStyle, 0);
+            mModeStyle = typedArray.getInt(R.styleable.SProgressButton_ModeStyle, 0);
 
-            Drawable atBackground = typedArray.getDrawable(R.styleable.spView_SrcBackground);
+            Drawable atBackground = typedArray.getDrawable(R.styleable.SProgressButton_SrcBackground);
             if(atBackground != null) mViewBase.setBackground(atBackground);
 
-            Drawable atIcon = typedArray.getDrawable(R.styleable.spView_IconNormal);
+            Drawable atIcon = typedArray.getDrawable(R.styleable.SProgressButton_IconNormal);
             if(atIcon != null) {
                 mIcon.setImageDrawable(atIcon);
                 mIconNormal = atIcon;
-                mIconProgress = typedArray.getDrawable(R.styleable.spView_IconProgress);
-                mIconSuccess = typedArray.getDrawable(R.styleable.spView_IconSuccess);
-                mIconFail = typedArray.getDrawable(R.styleable.spView_IconFail);
+                mIconProgress = typedArray.getDrawable(R.styleable.SProgressButton_IconProgress);
+                mIconSuccess = typedArray.getDrawable(R.styleable.SProgressButton_IconSuccess);
+                mIconFail = typedArray.getDrawable(R.styleable.SProgressButton_IconFail);
 
-//                int atIconSize = typedArray.getInt(R.styleable.spView_IconSize, 80);
-                int atIconSize = (int) typedArray.getDimension(R.styleable.spView_IconSize, 50);
-//                iIcon.getLayoutParams().width = (int) typedArray.getDimension(R.styleable.SpaSwitch_SwitchSize, R.dimen.sps_lpr_sz_30);
+                int atIconSize = (int) typedArray.getDimension(R.styleable.SProgressButton_IconSize, 50);
                 ViewGroup.LayoutParams params = mIcon.getLayoutParams();
                 params.height = atIconSize;
                 params.width = atIconSize;
                 mIcon.setLayoutParams(params);
 
-                int atIconPadding = typedArray.getInt(R.styleable.spView_IconPadding, 10);
+                int atIconPadding = typedArray.getInt(R.styleable.SProgressButton_IconPadding, 10);
                 mIcon.setPadding(atIconPadding, atIconPadding, atIconPadding, atIconPadding);
             }
 
-            String atTextNormal = typedArray.getString(R.styleable.spView_TextNormal);
+            String atTextNormal = typedArray.getString(R.styleable.SProgressButton_TextNormal);
             if(atTextNormal != null) mTextNormal = atTextNormal;
-            String atTextProgress = typedArray.getString(R.styleable.spView_TextProgress);
+            String atTextProgress = typedArray.getString(R.styleable.SProgressButton_TextProgress);
             if(atTextProgress != null) mTextProgress = atTextProgress;
-            String atTextSuccess = typedArray.getString(R.styleable.spView_TextSuccess);
+            String atTextSuccess = typedArray.getString(R.styleable.SProgressButton_TextSuccess);
             if(atTextSuccess != null) mTextSuccess = atTextSuccess;
-            String atTextFail = typedArray.getString(R.styleable.spView_TextFail);
+            String atTextFail = typedArray.getString(R.styleable.SProgressButton_TextFail);
             if(atTextFail != null) mTextFail = atTextFail;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mColorNormal = typedArray.getColor(R.styleable.spView_ColorNormal, context.getColor(mColorNormal));
-                mColorProgress = typedArray.getColor(R.styleable.spView_ColorProgress, context.getColor(mColorProgress));
-                mColorSuccess = typedArray.getColor(R.styleable.spView_ColorSuccess, context.getColor(mColorSuccess));
-                mColorFail = typedArray.getColor(R.styleable.spView_ColorFail, context.getColor(mColorFail));
+                mColorNormal = typedArray.getColor(R.styleable.SProgressButton_ColorNormal, context.getColor(mColorNormal));
+                mColorProgress = typedArray.getColor(R.styleable.SProgressButton_ColorProgress, context.getColor(mColorProgress));
+                mColorSuccess = typedArray.getColor(R.styleable.SProgressButton_ColorSuccess, context.getColor(mColorSuccess));
+                mColorFail = typedArray.getColor(R.styleable.SProgressButton_ColorFail, context.getColor(mColorFail));
             }
 
         }
@@ -142,7 +140,7 @@ public class spView extends RelativeLayout {
 //                initClick(v);
 //            }
 //        });
-        setProgress(context,0);
+        setProgress(0);
     }
 
 //    private void initClick(View v) {
@@ -157,7 +155,18 @@ public class spView extends RelativeLayout {
         this.setMinimumWidth(this.getWidth());
     }
 
-    public spView setProgress(Context mContext, int pMode){
+    public SProgressButton setText(String text){
+        mTextNormal = text;
+        mText.setText(text);
+        return this;
+    }
+
+    public SProgressButton setTextPending(String text){
+        mTextProgress = text;
+        return this;
+    }
+
+    public SProgressButton setProgress(int pMode){
         int syncColor = Color.WHITE;
         switch (pMode){
             case 0: //normal
@@ -167,14 +176,14 @@ public class spView extends RelativeLayout {
                 mIT.setVisibility(VISIBLE);
                 mProgress.setVisibility(GONE);
                 break;
-            case 1: //pending
+            default: //pending
                 syncColor = mColorProgress;
                 mIcon.setImageDrawable(mIconProgress);
                 mText.setText(mTextProgress);
                 if(mModeStyle > 0) mIT.setVisibility(GONE);
                 mProgress.setVisibility(VISIBLE);
                 break;
-            case 2: //success
+            case 100: //success
                 syncColor = mColorSuccess;
                 mIcon.setImageDrawable(mIconSuccess);
                 mText.setText(mTextSuccess);
