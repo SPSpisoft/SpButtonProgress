@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="sview">
+
+        <attr name="ModeStyle" format="enum">
+            <enum name="Normal" value="0"/>
+            <enum name="HideText" value="1"/>
+        </attr>
+
+        <attr name="ModeIconPosition" format="enum">
+            <enum name="Left" value="0"/>
+            <enum name="Right" value="1"/>
+            <enum name="Top" value="2"/>
+            <enum name="Bottom" value="3"/>
+        </attr>
+
+        <attr name="SrcBackground" format="reference"/>
+        <attr name="ColorSet" format="boolean"/>
+        <attr name="ColorNormal" format="color"/>
+        <attr name="ColorProgress" format="color"/>
+        <attr name="ColorSuccess" format="color"/>
+        <attr name="ColorFail" format="color"/>
+
+        <attr name="android:indeterminate"/>
+        <attr name="android:progress"/>
+
+        <attr name="TextNormal" format="string"/>
+        <attr name="TextProgress" format="string"/>
+        <attr name="TextSuccess" format="string"/>
+        <attr name="TextFail" format="string"/>
+        <attr name="android:typeface"/>
+        <attr name="android:textSize"/>
+        <attr name="android:textColor"/>
+
+        <attr name="Icon" format="reference"/>
+        <attr name="IconPadding" format="integer"/>
+        <attr name="IconSize" format="integer"/>
+
+    </declare-styleable>
+</resources>
