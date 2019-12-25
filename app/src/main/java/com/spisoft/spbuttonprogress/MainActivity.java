@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final SProgressButton vv = findViewById(R.id.user_sign_in_button);
-        vv.setTextPending(" برای استارت کلیک کنید و منتظز  بمانید تا تمام شود بعدش هر جا خاستی برو");
+        vv.setTextPending(" برای استارت کلیک کنید");
         vv.setText("wait");
         vv.setOnClickListener(new View.OnClickListener() {
             @Override

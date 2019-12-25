@@ -23,8 +23,9 @@ import androidx.core.widget.ContentLoadingProgressBar;
 
 public class SProgressButton extends RelativeLayout {
     private View rootView;
-    private LinearLayout mIT;
+    private RelativeLayout mIT;
     private ImageView mIcon;
+    private View mIconE;
     private TextView mText;
     private ProgressBar mProgress;
     private Drawable mIconNormal , mIconProgress , mIconSuccess , mIconFail ;
@@ -64,6 +65,7 @@ public class SProgressButton extends RelativeLayout {
         mViewBase = rootView.findViewById(R.id.viewBase);
         mIT = rootView.findViewById(R.id.vIT);
         mIcon = rootView.findViewById(R.id.vIcon);
+        mIconE = rootView.findViewById(R.id.vIconE);
         mText = rootView.findViewById(R.id.vText);
         mProgress = rootView.findViewById(R.id.vProgress);
 
@@ -84,23 +86,23 @@ public class SProgressButton extends RelativeLayout {
             switch (atModeIconPosition){
                 case 0:
                     mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LOCALE);
-                    mIT.setOrientation(LinearLayout.HORIZONTAL);
+//                    mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 1:
                     mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LTR);
-                    mIT.setOrientation(LinearLayout.HORIZONTAL);
+//                    mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 2:
                     mViewBase.setLayoutDirection(LAYOUT_DIRECTION_RTL);
-                    mIT.setOrientation(LinearLayout.HORIZONTAL);
+//                    mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 3:
                     mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LTR);
-                    mIT.setOrientation(LinearLayout.VERTICAL);
+//                    mIT.setOrientation(LinearLayout.VERTICAL);
                     break;
                 case 4:
                     mViewBase.setLayoutDirection(LAYOUT_DIRECTION_RTL);
-                    mIT.setOrientation(LinearLayout.VERTICAL);
+//                    mIT.setOrientation(LinearLayout.VERTICAL);
                     break;
             }
 
@@ -122,7 +124,10 @@ public class SProgressButton extends RelativeLayout {
                 params.height = atIconSize;
                 params.width = atIconSize;
                 mIcon.setLayoutParams(params);
-
+                ViewGroup.LayoutParams paramsE = mIconE.getLayoutParams();
+                paramsE.height = atIconSize;
+                paramsE.width = atIconSize;
+                mIconE.setLayoutParams(paramsE);
             }
 
             int atTextPadding = typedArray.getInt(R.styleable.SProgressButton_TextPadding, 10);
