@@ -63,10 +63,10 @@ public class sview extends RelativeLayout {
         mText = rootView.findViewById(R.id.vText);
         mProgress = rootView.findViewById(R.id.vProgress);
 
-        mIconNormal = context.getResources().getDrawable(R.drawable.ic_account_circle_deep_orange_a700_24dp);
-        mIconProgress = context.getResources().getDrawable(R.drawable.ic_autorenew_yellow_a400_24dp);
-        mIconSuccess = context.getResources().getDrawable(R.drawable.ic_check_circle_green_a700_24dp);
-        mIconFail = context.getResources().getDrawable(R.drawable.ic_report_red_a700_24dp);
+//        mIconNormal = context.getResources().getDrawable(R.drawable.ic_account_circle_deep_orange_a700_24dp);
+//        mIconProgress = context.getResources().getDrawable(R.drawable.ic_autorenew_yellow_a400_24dp);
+//        mIconSuccess = context.getResources().getDrawable(R.drawable.ic_check_circle_green_a700_24dp);
+//        mIconFail = context.getResources().getDrawable(R.drawable.ic_report_red_a700_24dp);
 
         if(attrs != null){
             final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.sview, 0, 0);
@@ -98,9 +98,13 @@ public class sview extends RelativeLayout {
             Drawable atBackground = typedArray.getDrawable(R.styleable.sview_SrcBackground);
             if(atBackground != null) mViewBase.setBackground(atBackground);
 
-            Drawable atIcon = typedArray.getDrawable(R.styleable.sview_Icon);
+            Drawable atIcon = typedArray.getDrawable(R.styleable.sview_IconNormal);
             if(atIcon != null) {
                 mIcon.setImageDrawable(atIcon);
+                mIconNormal = atIcon;
+                mIconProgress = typedArray.getDrawable(R.styleable.sview_IconProgress);
+                mIconSuccess = typedArray.getDrawable(R.styleable.sview_IconSuccess);
+                mIconFail = typedArray.getDrawable(R.styleable.sview_IconFail);
 
                 int atIconSize = typedArray.getInt(R.styleable.sview_IconSize, 80);
                 ViewGroup.LayoutParams params = mIcon.getLayoutParams();

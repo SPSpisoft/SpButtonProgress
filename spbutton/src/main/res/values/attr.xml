@@ -33,7 +33,10 @@
         <attr name="android:textSize"/>
         <attr name="android:textColor"/>
 
-        <attr name="Icon" format="reference"/>
+        <attr name="IconNormal" format="reference"/>
+        <attr name="IconProgress" format="reference"/>
+        <attr name="IconSuccess" format="reference"/>
+        <attr name="IconFail" format="reference"/>
         <attr name="IconPadding" format="integer"/>
         <attr name="IconSize" format="integer"/>
 
