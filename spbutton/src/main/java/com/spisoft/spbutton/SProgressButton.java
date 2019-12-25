@@ -83,23 +83,23 @@ public class SProgressButton extends RelativeLayout {
             int atModeIconPosition = typedArray.getInt(R.styleable.SProgressButton_ModeIconPosition, 0);
             switch (atModeIconPosition){
                 case 0:
-                    mIT.setLayoutDirection(LAYOUT_DIRECTION_LOCALE);
+                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LOCALE);
                     mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 1:
-                    mIT.setLayoutDirection(LAYOUT_DIRECTION_LTR);
+                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LTR);
                     mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 2:
-                    mIT.setLayoutDirection(LAYOUT_DIRECTION_RTL);
+                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_RTL);
                     mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 3:
-                    mIT.setLayoutDirection(LAYOUT_DIRECTION_LTR);
+                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LTR);
                     mIT.setOrientation(LinearLayout.VERTICAL);
                     break;
                 case 4:
-                    mIT.setLayoutDirection(LAYOUT_DIRECTION_RTL);
+                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_RTL);
                     mIT.setOrientation(LinearLayout.VERTICAL);
                     break;
             }
