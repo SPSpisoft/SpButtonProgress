@@ -167,6 +167,10 @@ public class SProgressButton extends RelativeLayout {
         return this;
     }
 
+    public int getCurrrentMode(){
+        return mProgress.getProgress();
+    }
+
     public SProgressButton setProgress(int pMode){
         int syncColor = Color.WHITE;
         switch (pMode){
