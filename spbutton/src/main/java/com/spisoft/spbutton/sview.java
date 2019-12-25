@@ -63,10 +63,10 @@ public class sview extends RelativeLayout {
         mText = rootView.findViewById(R.id.vText);
         mProgress = rootView.findViewById(R.id.vProgress);
 
-//        mIconNormal = context.getResources().getDrawable(R.drawable.ic_account_circle_deep_orange_a700_24dp);
-//        mIconProgress = context.getResources().getDrawable(R.drawable.ic_autorenew_yellow_a400_24dp);
-//        mIconSuccess = context.getResources().getDrawable(R.drawable.ic_check_circle_green_a700_24dp);
-//        mIconFail = context.getResources().getDrawable(R.drawable.ic_report_red_a700_24dp);
+        mIconNormal = context.getResources().getDrawable(R.drawable.ic_account_circle_deep_orange_a700_24dp);
+        mIconProgress = context.getResources().getDrawable(R.drawable.ic_autorenew_yellow_a400_24dp);
+        mIconSuccess = context.getResources().getDrawable(R.drawable.ic_check_circle_green_a700_24dp);
+        mIconFail = context.getResources().getDrawable(R.drawable.ic_report_red_a700_24dp);
 
         if(attrs != null){
             final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.sview, 0, 0);
