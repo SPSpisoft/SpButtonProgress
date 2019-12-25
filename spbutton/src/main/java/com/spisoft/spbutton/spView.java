@@ -18,37 +18,37 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.core.widget.ContentLoadingProgressBar;
 
-public class sview extends RelativeLayout {
+public class spView extends RelativeLayout {
     private View rootView;
     private LinearLayout mIT;
     private ImageView mIcon;
     private TextView mText;
     private ContentLoadingProgressBar mProgress;
     private Drawable mIconNormal , mIconProgress , mIconSuccess , mIconFail ;
-    private String mTextNormal = "Press me", mTextProgress = "Progress", mTextSuccess = "Success", mTextFail = "Fail";
+    private String mTextNormal = "Sign in", mTextProgress = "Progress", mTextSuccess = "Success", mTextFail = "Fail";
     private int mColorNormal = R.color.colorNormal, mColorProgress = R.color.colorProgress,
             mColorSuccess = R.color.colorSuccess, mColorFail = R.color.colorFail;
     private View mViewBase;
     private boolean mColorSet = false;
     private int mModeStyle = 0;
 
-    public sview(Context context) {
+    public spView(Context context) {
         super(context);
         initView(context, null, -1);
     }
 
-    public sview(Context context, AttributeSet attrs) {
+    public spView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs, -1);
     }
 
-    public sview(Context context, AttributeSet attrs, int defStyleAttr) {
+    public spView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context, attrs, defStyleAttr);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public sview(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public spView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
     //-------------------------------------------------------
@@ -69,11 +69,11 @@ public class sview extends RelativeLayout {
 //        mIconFail = context.getResources().getDrawable(R.drawable.ic_report_red_a700_24dp);
 
         if(attrs != null){
-            final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.sview, 0, 0);
+            final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.spView, 0, 0);
 
-            mColorSet = typedArray.getBoolean(R.styleable.sview_ColorSet, false);
+            mColorSet = typedArray.getBoolean(R.styleable.spView_ColorSet, false);
 
-            int atModeIconPosition = typedArray.getInt(R.styleable.sview_ModeIconPosition, 0);
+            int atModeIconPosition = typedArray.getInt(R.styleable.spView_ModeIconPosition, 0);
             switch (atModeIconPosition){
                 case 0:
                     mIT.setLayoutDirection(LAYOUT_DIRECTION_LTR);
@@ -93,43 +93,45 @@ public class sview extends RelativeLayout {
                     break;
             }
 
-            mModeStyle = typedArray.getInt(R.styleable.sview_ModeStyle, 0);
+            mModeStyle = typedArray.getInt(R.styleable.spView_ModeStyle, 0);
 
-            Drawable atBackground = typedArray.getDrawable(R.styleable.sview_SrcBackground);
+            Drawable atBackground = typedArray.getDrawable(R.styleable.spView_SrcBackground);
             if(atBackground != null) mViewBase.setBackground(atBackground);
 
-            Drawable atIcon = typedArray.getDrawable(R.styleable.sview_IconNormal);
+            Drawable atIcon = typedArray.getDrawable(R.styleable.spView_IconNormal);
             if(atIcon != null) {
                 mIcon.setImageDrawable(atIcon);
                 mIconNormal = atIcon;
-                mIconProgress = typedArray.getDrawable(R.styleable.sview_IconProgress);
-                mIconSuccess = typedArray.getDrawable(R.styleable.sview_IconSuccess);
-                mIconFail = typedArray.getDrawable(R.styleable.sview_IconFail);
+                mIconProgress = typedArray.getDrawable(R.styleable.spView_IconProgress);
+                mIconSuccess = typedArray.getDrawable(R.styleable.spView_IconSuccess);
+                mIconFail = typedArray.getDrawable(R.styleable.spView_IconFail);
 
-                int atIconSize = typedArray.getInt(R.styleable.sview_IconSize, 80);
+//                int atIconSize = typedArray.getInt(R.styleable.spView_IconSize, 80);
+                int atIconSize = (int) typedArray.getDimension(R.styleable.spView_IconSize, 50);
+//                iIcon.getLayoutParams().width = (int) typedArray.getDimension(R.styleable.SpaSwitch_SwitchSize, R.dimen.sps_lpr_sz_30);
                 ViewGroup.LayoutParams params = mIcon.getLayoutParams();
                 params.height = atIconSize;
                 params.width = atIconSize;
                 mIcon.setLayoutParams(params);
 
-                int atIconPadding = typedArray.getInt(R.styleable.sview_IconPadding, 10);
+                int atIconPadding = typedArray.getInt(R.styleable.spView_IconPadding, 10);
                 mIcon.setPadding(atIconPadding, atIconPadding, atIconPadding, atIconPadding);
             }
 
-            String atTextNormal = typedArray.getString(R.styleable.sview_TextNormal);
+            String atTextNormal = typedArray.getString(R.styleable.spView_TextNormal);
             if(atTextNormal != null) mTextNormal = atTextNormal;
-            String atTextProgress = typedArray.getString(R.styleable.sview_TextProgress);
+            String atTextProgress = typedArray.getString(R.styleable.spView_TextProgress);
             if(atTextProgress != null) mTextProgress = atTextProgress;
-            String atTextSuccess = typedArray.getString(R.styleable.sview_TextSuccess);
+            String atTextSuccess = typedArray.getString(R.styleable.spView_TextSuccess);
             if(atTextSuccess != null) mTextSuccess = atTextSuccess;
-            String atTextFail = typedArray.getString(R.styleable.sview_TextFail);
+            String atTextFail = typedArray.getString(R.styleable.spView_TextFail);
             if(atTextFail != null) mTextFail = atTextFail;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                mColorNormal = typedArray.getColor(R.styleable.sview_ColorNormal, context.getColor(mColorNormal));
-                mColorProgress = typedArray.getColor(R.styleable.sview_ColorProgress, context.getColor(mColorProgress));
-                mColorSuccess = typedArray.getColor(R.styleable.sview_ColorSuccess, context.getColor(mColorSuccess));
-                mColorFail = typedArray.getColor(R.styleable.sview_ColorFail, context.getColor(mColorFail));
+                mColorNormal = typedArray.getColor(R.styleable.spView_ColorNormal, context.getColor(mColorNormal));
+                mColorProgress = typedArray.getColor(R.styleable.spView_ColorProgress, context.getColor(mColorProgress));
+                mColorSuccess = typedArray.getColor(R.styleable.spView_ColorSuccess, context.getColor(mColorSuccess));
+                mColorFail = typedArray.getColor(R.styleable.spView_ColorFail, context.getColor(mColorFail));
             }
 
         }
@@ -155,7 +157,7 @@ public class sview extends RelativeLayout {
         this.setMinimumWidth(this.getWidth());
     }
 
-    public sview setProgress(Context mContext, int pMode){
+    public spView setProgress(Context mContext, int pMode){
         int syncColor = Color.WHITE;
         switch (pMode){
             case 0: //normal

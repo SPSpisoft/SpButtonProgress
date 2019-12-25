@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="sview">
-
+    <declare-styleable name="spView">
         <attr name="ModeStyle" format="enum">
             <enum name="Normal" value="0"/>
             <enum name="HideText" value="1"/>
@@ -38,7 +37,7 @@
         <attr name="IconSuccess" format="reference"/>
         <attr name="IconFail" format="reference"/>
         <attr name="IconPadding" format="integer"/>
-        <attr name="IconSize" format="integer"/>
+        <attr name="IconSize" format="dimension"/>
 
     </declare-styleable>
 </resources>
