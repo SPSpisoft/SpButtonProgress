@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -10,8 +11,6 @@
     <com.spisoft.spbutton.SProgressButton
         android:id="@+id/spb"
         app:TextNormal="hhh"
-        app:ColorNormal="@color/colorPrimaryDark"
-        app:ColorSet="true"
         app:IconNormal="@mipmap/ic_launcher"
         app:IconSize="30dp"
         android:layout_width="match_parent"
@@ -19,4 +18,20 @@
         tools:ignore="MissingConstraints">
     </com.spisoft.spbutton.SProgressButton>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.spisoft.spbutton.SProgressButton
+        android:id="@+id/user_sign_in_button"
+        android:layout_below="@+id/rlyPass"
+        android:layout_height="@dimen/sps_lpr_sz_50"
+        android:layout_width="wrap_content"
+        app:TextNormal="@string/action_sign_in"
+        app:TextProgress="@string/PleaseWait"
+        app:TextSuccess="@string/Successful"
+        app:TextFail="@string/UnSuccessful"
+        app:IconNormal="@drawable/ic_account"
+        app:IconProgress="@drawable/ic_swap"
+        app:IconSuccess="@drawable/ic_check"
+        app:IconFail="@drawable/ic_error"
+        app:IconSize="@dimen/sps_lpr_sz_50">
+    </com.spisoft.spbutton.SProgressButton>
+
+</LinearLayout>

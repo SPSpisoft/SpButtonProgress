@@ -31,13 +31,15 @@
         <attr name="android:typeface"/>
         <attr name="android:textSize"/>
         <attr name="android:textColor"/>
+        <attr name="TextPadding" format="integer"/>
 
         <attr name="IconNormal" format="reference"/>
         <attr name="IconProgress" format="reference"/>
         <attr name="IconSuccess" format="reference"/>
         <attr name="IconFail" format="reference"/>
-        <attr name="IconPadding" format="integer"/>
         <attr name="IconSize" format="dimension"/>
+
+        <attr name="Indeterminate" format="boolean"/>
 
     </declare-styleable>
 </resources>

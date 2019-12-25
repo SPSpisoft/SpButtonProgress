@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+<!--    <color name="colorPrimary">#008577</color>-->
+<!--    <color name="colorPrimaryDark">#00574B</color>-->
+<!--    <color name="colorAccent">#D81B60</color>-->
+
+<!--    <color name="colorPrimaryDark">#850820</color>-->
+<!--    <color name="colorPrimary">#E40D2D</color>-->
+<!--    <color name="colorAccent">#FFA726</color>-->
+
+    <color name="colorPrimaryDark">#880E4F</color>
+    <color name="colorPrimary">#F50057</color>
+    <color name="colorAccent">#FFA726</color>
+
+<!--    <color name="colorPrimaryDark">#063F37</color>-->
+<!--    <color name="colorPrimary">#118075</color>-->
+<!--    <color name="colorAccent">#E71111</color>-->
+
+<!--    <color name="colorPrimaryDark">#265028</color>-->
+<!--    <color name="colorPrimary">#288F2B</color>-->
+<!--    <color name="colorAccent">#D81B60</color>-->
+
+<!--    <color name="colorPrimaryDark">#11132C</color>-->
+<!--    <color name="colorPrimary">#253388</color>-->
+<!--    <color name="colorAccent">#D50909</color>-->
+
+<!--    <color name="colorPrimaryDark">#4B1E57</color>-->
+<!--    <color name="colorPrimary">#5C6BC0</color>-->
+<!--    <color name="colorAccent">#D81B60</color>-->
+
+<!--    <color name="colorPrimary">#017E6D</color>-->
+<!--    <color name="colorPrimaryDark">#0A3B63</color>-->
+<!--    <color name="colorAccent">#D81B60</color>-->
+
+    <color name="colorPrimaryTrans">#7A017E6D</color>
+
+    <color name="colorSliderBackground">#FF181821</color>
+    <color name="colorTextColor">#FFFFFFFF</color>
+    <color name="colorSwitchColor">#FF2371FA</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="tab_bg_color_sel">#B5FFEE58</color>
+
+
+    <color name="sps_white">#FFFFFF</color>
+    <color name="sps_yellow">#FFFF00</color>
+    <color name="sps_fuchsia">#FF00FF</color>
+    <color name="sps_red">#FF0000</color>
+    <color name="sps_silver">#C0C0C0</color>
+    <color name="sps_gray">#808080</color>
+    <color name="sps_olive">#808000</color>
+    <color name="sps_purple">#800080</color>
+    <color name="sps_maroon">#800000</color>
+    <color name="sps_aqua">#00FFFF</color>
+    <color name="sps_lime">#00FF00</color>
+    <color name="sps_teal">#008080</color>
+    <color name="sps_green">#008000</color>
+    <color name="sps_blue">#0000FF</color>
+    <color name="sps_navy">#000080</color>
+    <color name="sps_black">#000000</color>
+
+    <color name="sps_color_warning">#FF6F01</color>
+    <color name="sps_color_hf">#EBF3A524</color>
+    <color name="sps_color_error">#ff0101</color>
+    <color name="sps_color_done">#FF047626</color>
+    <color name="sps_green_dark">#0C9E10</color>
+    <color name="sps_color_badge">#FFDD56</color>
+
+    <color name="filtersfab">#3f51b5</color>
+    <color name="filters_header">#303f9f</color>
+    <color name="filters_buttons">#ff4081</color>
+    <color name="filters_buttons_selected">#c2185b</color>
+    <color name="filters_chips">#b3e5fc</color>
+
+    <color name="orange">#ff5722</color>
+    <color name="brown">#795548</color>
 </resources>

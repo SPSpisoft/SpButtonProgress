@@ -10,8 +10,11 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,7 +26,7 @@ public class SProgressButton extends RelativeLayout {
     private LinearLayout mIT;
     private ImageView mIcon;
     private TextView mText;
-    private ContentLoadingProgressBar mProgress;
+    private ProgressBar mProgress;
     private Drawable mIconNormal , mIconProgress , mIconSuccess , mIconFail ;
     private String mTextNormal = "Sign in", mTextProgress = "Progress", mTextSuccess = "Success", mTextFail = "Fail";
     private int mColorNormal = R.color.colorNormal, mColorProgress = R.color.colorProgress,
@@ -31,6 +34,7 @@ public class SProgressButton extends RelativeLayout {
     private View mViewBase;
     private boolean mColorSet = false;
     private int mModeStyle = 0;
+    private Animation animation_rotate;
 
     public SProgressButton(Context context) {
         super(context);
@@ -63,6 +67,8 @@ public class SProgressButton extends RelativeLayout {
         mText = rootView.findViewById(R.id.vText);
         mProgress = rootView.findViewById(R.id.vProgress);
 
+        animation_rotate = AnimationUtils.loadAnimation(context, R.anim.rotate_indefinitely);
+
 //        mIconNormal = context.getResources().getDrawable(R.drawable.ic_account_circle_deep_orange_a700_24dp);
 //        mIconProgress = context.getResources().getDrawable(R.drawable.ic_autorenew_yellow_a400_24dp);
 //        mIconSuccess = context.getResources().getDrawable(R.drawable.ic_check_circle_green_a700_24dp);
@@ -72,22 +78,27 @@ public class SProgressButton extends RelativeLayout {
             final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SProgressButton, 0, 0);
 
             mColorSet = typedArray.getBoolean(R.styleable.SProgressButton_ColorSet, false);
+            mProgress.setIndeterminate(typedArray.getBoolean(R.styleable.SProgressButton_Indeterminate, true));
 
             int atModeIconPosition = typedArray.getInt(R.styleable.SProgressButton_ModeIconPosition, 0);
             switch (atModeIconPosition){
                 case 0:
-                    mIT.setLayoutDirection(LAYOUT_DIRECTION_LTR);
+                    mIT.setLayoutDirection(LAYOUT_DIRECTION_LOCALE);
                     mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 1:
-                    mIT.setLayoutDirection(LAYOUT_DIRECTION_RTL);
+                    mIT.setLayoutDirection(LAYOUT_DIRECTION_LTR);
                     mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 2:
+                    mIT.setLayoutDirection(LAYOUT_DIRECTION_RTL);
+                    mIT.setOrientation(LinearLayout.HORIZONTAL);
+                    break;
+                case 3:
                     mIT.setLayoutDirection(LAYOUT_DIRECTION_LTR);
                     mIT.setOrientation(LinearLayout.VERTICAL);
                     break;
-                case 3:
+                case 4:
                     mIT.setLayoutDirection(LAYOUT_DIRECTION_RTL);
                     mIT.setOrientation(LinearLayout.VERTICAL);
                     break;
@@ -112,9 +123,10 @@ public class SProgressButton extends RelativeLayout {
                 params.width = atIconSize;
                 mIcon.setLayoutParams(params);
 
-                int atIconPadding = typedArray.getInt(R.styleable.SProgressButton_IconPadding, 10);
-                mIcon.setPadding(atIconPadding, atIconPadding, atIconPadding, atIconPadding);
             }
+
+            int atTextPadding = typedArray.getInt(R.styleable.SProgressButton_TextPadding, 10);
+            mText.setPadding(atTextPadding, atTextPadding, atTextPadding, atTextPadding);
 
             String atTextNormal = typedArray.getString(R.styleable.SProgressButton_TextNormal);
             if(atTextNormal != null) mTextNormal = atTextNormal;
@@ -134,19 +146,8 @@ public class SProgressButton extends RelativeLayout {
 
         }
 
-//        this.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                initClick(v);
-//            }
-//        });
         setProgress(0);
     }
-
-//    private void initClick(View v) {
-//        setMode(1);
-//    }
-
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -178,8 +179,10 @@ public class SProgressButton extends RelativeLayout {
                 break;
             default: //pending
                 syncColor = mColorProgress;
+                mIcon.startAnimation(animation_rotate);
                 mIcon.setImageDrawable(mIconProgress);
                 mText.setText(mTextProgress);
+                mProgress.setProgress(pMode);
                 if(mModeStyle > 0) mIT.setVisibility(GONE);
                 mProgress.setVisibility(VISIBLE);
                 break;
