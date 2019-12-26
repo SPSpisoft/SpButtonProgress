@@ -35,7 +35,7 @@ public class SProgressButton extends RelativeLayout {
     private View mViewBase;
     private boolean mColorSet = false;
     private int mModeStyle = 0;
-    private Animation animation_rotate;
+    private Animation animSel, animation_rotate , animation_left_to_right , animation_right_to_left, animation_up_to_down, animation_down_to_up;
 
     public SProgressButton(Context context) {
         super(context);
@@ -70,6 +70,10 @@ public class SProgressButton extends RelativeLayout {
         mProgress = rootView.findViewById(R.id.vProgress);
 
         animation_rotate = AnimationUtils.loadAnimation(context, R.anim.rotate_indefinitely);
+        animation_left_to_right = AnimationUtils.loadAnimation(context, R.anim.ltr_indefinitely);
+        animation_right_to_left = AnimationUtils.loadAnimation(context, R.anim.rtl_indefinitely);
+        animation_up_to_down = AnimationUtils.loadAnimation(context, R.anim.utd_indefinitely);
+        animation_down_to_up = AnimationUtils.loadAnimation(context, R.anim.dtu_indefinitely);
 
 //        mIconNormal = context.getResources().getDrawable(R.drawable.ic_account_circle_deep_orange_a700_24dp);
 //        mIconProgress = context.getResources().getDrawable(R.drawable.ic_autorenew_yellow_a400_24dp);
@@ -82,6 +86,26 @@ public class SProgressButton extends RelativeLayout {
             mColorSet = typedArray.getBoolean(R.styleable.SProgressButton_ColorSet, false);
             mProgress.setIndeterminate(typedArray.getBoolean(R.styleable.SProgressButton_Indeterminate, true));
 
+            int atModeAnimation = typedArray.getInt(R.styleable.SProgressButton_AnimMode, 0);
+            switch (atModeAnimation) {
+                case 0:
+                    animSel = animation_rotate;
+                    break;
+                case 1:
+                    animSel = animation_left_to_right;
+                    break;
+                case 2:
+                    animSel = animation_right_to_left;
+                    break;
+                case 3:
+                    animSel = animation_up_to_down;
+                    break;
+                case 4:
+                    animSel = animation_down_to_up;
+                    break;
+            }
+            animSel.setDuration(typedArray.getInt(R.styleable.SProgressButton_AnimDuration, 1500));
+
             int atModeIconPosition = typedArray.getInt(R.styleable.SProgressButton_ModeIconPosition, 0);
             switch (atModeIconPosition){
                 case 0:
@@ -89,11 +113,11 @@ public class SProgressButton extends RelativeLayout {
 //                    mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 1:
-                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LTR);
+                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_RTL);
 //                    mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 2:
-                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_RTL);
+                    mViewBase.setLayoutDirection(LAYOUT_DIRECTION_LTR);
 //                    mIT.setOrientation(LinearLayout.HORIZONTAL);
                     break;
                 case 3:
@@ -172,6 +196,11 @@ public class SProgressButton extends RelativeLayout {
         return this;
     }
 
+    public SProgressButton setAnimateDuration(int duration){
+        animSel.setDuration(duration);
+        return this;
+    }
+
     public int getCurrrentMode(){
         return mProgress.getProgress();
     }
@@ -188,7 +217,7 @@ public class SProgressButton extends RelativeLayout {
                 break;
             default: //pending
                 syncColor = mColorProgress;
-                mIcon.startAnimation(animation_rotate);
+                mIcon.startAnimation(animSel);
                 mIcon.setImageDrawable(mIconProgress);
                 mText.setText(mTextProgress);
                 mProgress.setProgress(pMode);

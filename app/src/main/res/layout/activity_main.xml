@@ -23,6 +23,8 @@
         android:layout_below="@+id/rlyPass"
         android:layout_height="@dimen/sps_lpr_sz_50"
         android:layout_width="wrap_content"
+        app:ModeIconPosition="Right"
+        app:AnimMode="RightToLeft"
         app:TextNormal="@string/action_sign_in"
         app:TextProgress="@string/PleaseWait"
         app:TextSuccess="@string/Successful"

@@ -15,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final SProgressButton vv = findViewById(R.id.user_sign_in_button);
-        vv.setTextPending(" برای استارت کلیک کنید");
-        vv.setText("wait");
+        vv.setAnimateDuration(2000);
+        vv.setTextPending("wait");
+        vv.setText("start");
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

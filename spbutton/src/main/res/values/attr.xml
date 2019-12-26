@@ -14,6 +14,15 @@
             <enum name="Bottom" value="3"/>
         </attr>
 
+        <attr name="AnimDuration" format="integer"/>
+        <attr name="AnimMode" format="enum">
+            <enum name="Rotate" value="0"/>
+            <enum name="LeftToRight" value="1"/>
+            <enum name="RightToLeft" value="2"/>
+            <enum name="UpToDown" value="3"/>
+            <enum name="DownToUp" value="4"/>
+        </attr>
+
         <attr name="SrcBackground" format="reference"/>
         <attr name="ColorSet" format="boolean"/>
         <attr name="ColorNormal" format="color"/>
