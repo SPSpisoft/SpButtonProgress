@@ -213,6 +213,10 @@ public class SProgressButton extends RelativeLayout {
         return CurrentMode;
     }
 
+    public int getCurrentProgress(){
+        return mProgress.getProgress();
+    }
+
     public SProgressButton setProgress(int pMode){
         CurrentMode = pMode;
         int syncColor = Color.WHITE;
@@ -235,6 +239,7 @@ public class SProgressButton extends RelativeLayout {
                 break;
             case 100: //success
                 syncColor = mColorSuccess;
+                mIcon.clearAnimation();
                 mIcon.setImageDrawable(mIconSuccess);
                 mText.setText(mTextSuccess);
                 if(mModeStyle > 0) mIT.setVisibility(GONE);
@@ -242,6 +247,7 @@ public class SProgressButton extends RelativeLayout {
                 break;
             case -1: //fail
                 syncColor = mColorFail;
+                mIcon.clearAnimation();
                 mIcon.setImageDrawable(mIconFail);
                 mText.setText(mTextFail);
                 mIT.setVisibility(VISIBLE);

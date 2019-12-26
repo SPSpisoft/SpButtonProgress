@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vv.getCurrrentMode() <= 0)
+                if(vv.getCurrentMode() <= 0)
                 vv.setProgress(1);
             }
         });
