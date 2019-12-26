@@ -47,6 +47,7 @@
         <attr name="IconSuccess" format="reference"/>
         <attr name="IconFail" format="reference"/>
         <attr name="IconSize" format="dimension"/>
+        <attr name="IconPadding" format="dimension"/>
 
         <attr name="Indeterminate" format="boolean"/>
 

@@ -36,6 +36,7 @@ public class SProgressButton extends RelativeLayout {
     private boolean mColorSet = false;
     private int mModeStyle = 0;
     private Animation animSel, animation_rotate , animation_left_to_right , animation_right_to_left, animation_up_to_down, animation_down_to_up;
+    private int CurrentMode;
 
     public SProgressButton(Context context) {
         super(context);
@@ -142,17 +143,19 @@ public class SProgressButton extends RelativeLayout {
                 mIconProgress = typedArray.getDrawable(R.styleable.SProgressButton_IconProgress);
                 mIconSuccess = typedArray.getDrawable(R.styleable.SProgressButton_IconSuccess);
                 mIconFail = typedArray.getDrawable(R.styleable.SProgressButton_IconFail);
-
-                int atIconSize = (int) typedArray.getDimension(R.styleable.SProgressButton_IconSize, 50);
-                ViewGroup.LayoutParams params = mIcon.getLayoutParams();
-                params.height = atIconSize;
-                params.width = atIconSize;
-                mIcon.setLayoutParams(params);
-                ViewGroup.LayoutParams paramsE = mIconE.getLayoutParams();
-                paramsE.height = atIconSize;
-                paramsE.width = atIconSize;
-                mIconE.setLayoutParams(paramsE);
             }
+            int atIconSize = (int) typedArray.getDimension(R.styleable.SProgressButton_IconSize, 50);
+            ViewGroup.LayoutParams params = mIcon.getLayoutParams();
+            params.height = atIconSize;
+            params.width = atIconSize;
+            mIcon.setLayoutParams(params);
+            ViewGroup.LayoutParams paramsE = mIconE.getLayoutParams();
+            paramsE.height = atIconSize;
+            paramsE.width = atIconSize;
+            mIconE.setLayoutParams(paramsE);
+
+            int atIconPadding = (int) typedArray.getDimension(R.styleable.SProgressButton_IconPadding, 0);
+            mIcon.setPadding(atIconPadding, atIconPadding, atIconPadding, atIconPadding);
 
             int atTextPadding = typedArray.getInt(R.styleable.SProgressButton_TextPadding, 10);
             mText.setPadding(atTextPadding, atTextPadding, atTextPadding, atTextPadding);
@@ -201,11 +204,17 @@ public class SProgressButton extends RelativeLayout {
         return this;
     }
 
-    public int getCurrrentMode(){
-        return mProgress.getProgress();
+    public SProgressButton setIconPadding(int padding){
+        mIcon.setPadding(padding, padding, padding, padding);
+        return this;
+    }
+
+    public int getCurrentMode(){
+        return CurrentMode;
     }
 
     public SProgressButton setProgress(int pMode){
+        CurrentMode = pMode;
         int syncColor = Color.WHITE;
         switch (pMode){
             case 0: //normal
