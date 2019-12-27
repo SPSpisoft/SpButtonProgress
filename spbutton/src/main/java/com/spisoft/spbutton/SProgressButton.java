@@ -203,6 +203,11 @@ public class SProgressButton extends RelativeLayout {
         return this;
     }
 
+    public SProgressButton setTextDesc(String text){
+        mTextDesc.setText(text);
+        return this;
+    }
+
     public SProgressButton setNormal(String text, String textDesc, Drawable drawable, int color){
         if(text != null) mTextNormal = text;
         if(textDesc != null) mDescNormal = textDesc;
