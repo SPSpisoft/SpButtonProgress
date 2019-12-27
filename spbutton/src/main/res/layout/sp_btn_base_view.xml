@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_button_shape"
     android:id="@+id/viewBase"
     android:orientation="vertical"
@@ -81,11 +81,11 @@
             android:layout_centerVertical="true"
             android:src="@drawable/abc_vector_test">
 
-            <ProgressBar
+            <com.github.rahatarmanahmed.cpv.CircularProgressView
                 android:id="@+id/vProgress"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </ProgressBar>
+            </com.github.rahatarmanahmed.cpv.CircularProgressView>
         </RelativeLayout>
 
     </RelativeLayout>

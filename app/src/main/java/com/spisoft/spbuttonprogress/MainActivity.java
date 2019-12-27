@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 if(vv.getCurrentMode() <= 0) {
                     vv.setProgress(1);
                 }else {
-                    vv.setProgress(-1);
+                    vv.setProgress(100);
                 }
             }
         });

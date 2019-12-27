@@ -2,12 +2,16 @@ package com.spisoft.spbutton;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.AsyncTask;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
@@ -21,7 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.widget.ContentLoadingProgressBar;
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 public class SProgressButton extends RelativeLayout {
     private View rootView;
@@ -29,7 +33,7 @@ public class SProgressButton extends RelativeLayout {
     private ImageView mIcon;
     private View mIconE;
     private TextView mText, mTextDesc;
-    private ProgressBar mProgress;
+    private CircularProgressView mProgress;
     private Drawable mIconNormal , mIconProgress , mIconSuccess , mIconFail ;
     private String mTextNormal = "Sign in", mTextProgress = "Progress", mTextSuccess = "Success", mTextFail = "Fail";
     private String mDescNormal = "", mDescProgress = "", mDescSuccess = "", mDescFail = "";
@@ -255,9 +259,9 @@ public class SProgressButton extends RelativeLayout {
         return CurrentMode;
     }
 
-    public int getCurrentProgress(){
-        return mProgress.getProgress();
-    }
+//    public int getCurrentProgress(){
+//        return mProgress.getProgress();
+//    }
 
     public SProgressButton setProgress(int pMode){
         CurrentMode = pMode;
@@ -302,27 +306,41 @@ public class SProgressButton extends RelativeLayout {
 
                 mProgress.setVisibility(VISIBLE);
                 mProgress.setIndeterminate(false);
-                mProgress.setMax(3);
+                mProgress.setMaxProgress(4);
+                mProgress.setProgress(1);
+                final int DM = 400;
                 final Handler handler1 = new Handler();
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mProgress.setProgress(1);
+                        mProgress.setProgress(2);
                         handler1.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                mProgress.setProgress(2);
+                                mProgress.setProgress(3);
                                 handler1.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        mProgress.setProgress(3);
-                                        mProgress.setIndeterminate(true);
-                                        setProgress(0);
+                                        mProgress.setProgress(4);
+                                        handler1.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                mProgress.setProgress(5);
+                                                handler1.postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        mProgress.setIndeterminate(true);
+                                                        setProgress(0);
+                                                    }
+                                                }, DM);
+                                            }
+                                        }, DM);
                                     }
-                                }, 500);                            }
-                        }, 500);
+                                }, DM);
+                            }
+                        }, DM);
                     }
-                }, 500);
+                }, DM);
 
                 break;
         }
@@ -336,4 +354,5 @@ public class SProgressButton extends RelativeLayout {
         }
         return this;
     }
+
 }
