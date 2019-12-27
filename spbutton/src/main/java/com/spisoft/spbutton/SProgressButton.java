@@ -208,12 +208,6 @@ public class SProgressButton extends RelativeLayout {
         return this;
     }
 
-    public SProgressButton setTextDesc(String text){
-        mText.setText(text);
-//        mText.setTextColor();
-        return this;
-    }
-
     public SProgressButton autoBackOnFail(boolean back, long delayMilis, boolean setFailColor){
         mBackOnFail = back;
         mMiliDelay = delayMilis;
@@ -254,6 +248,12 @@ public class SProgressButton extends RelativeLayout {
         if(textDesc != null) mDescFail = textDesc;
         if(drawable != null) mIconFail = drawable;
         if(color > 0) mColorFail = color;
+        return this;
+    }
+
+    public SProgressButton setTextDesc(String text, boolean OnSet){
+        if(OnSet) mText.setText(text);
+        mDescFail = text;
         return this;
     }
 
