@@ -9,22 +9,10 @@
     tools:context=".MainActivity">
 
     <com.spisoft.spbutton.SProgressButton
-        android:id="@+id/spb"
-        app:TextNormal="hhh"
-        app:IconNormal="@mipmap/ic_launcher"
-        app:IconSize="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        tools:ignore="MissingConstraints">
-    </com.spisoft.spbutton.SProgressButton>
-
-    <com.spisoft.spbutton.SProgressButton
         android:id="@+id/user_sign_in_button"
-        android:layout_below="@+id/rlyPass"
         android:layout_height="@dimen/sps_lpr_sz_50"
         android:layout_width="wrap_content"
         app:ModeIconPosition="Right"
-        app:AnimMode="RightToLeft"
         app:TextNormal="@string/action_sign_in"
         app:TextProgress="@string/PleaseWait"
         app:TextSuccess="@string/Successful"
@@ -35,5 +23,14 @@
         app:IconFail="@drawable/ic_error"
         app:IconSize="@dimen/sps_lpr_sz_50">
     </com.spisoft.spbutton.SProgressButton>
-
+    <com.spisoft.spbutton.SProgressButton
+        android:id="@+id/spb"
+        android:layout_below="@+id/user_sign_in_button"
+        app:TextNormal="hhh"
+        app:IconNormal="@mipmap/ic_launcher"
+        app:IconSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        tools:ignore="MissingConstraints">
+    </com.spisoft.spbutton.SProgressButton>
 </LinearLayout>

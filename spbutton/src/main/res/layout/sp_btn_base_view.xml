@@ -45,12 +45,32 @@
 
         <TextView
             android:id="@+id/vText"
-            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:layout_toEndOf="@+id/vIcon"
+            android:layout_toStartOf="@+id/vIconE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <TextView
+            android:id="@+id/vTextِDesc"
+            android:textColor="@color/colorFail"
+            android:layout_marginStart="@dimen/sps_lpr_5"
+            android:layout_marginEnd="@dimen/sps_lpr_5"
+            android:layout_below="@+id/vText"
+            android:gravity="center_horizontal"
             android:layout_toEndOf="@+id/vIcon"
             android:layout_toStartOf="@+id/vIconE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:textSize="@dimen/sps_txt_sz_12"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            tools:ignore="HardcodedText">
         </TextView>
 
         <RelativeLayout
@@ -64,7 +84,8 @@
             <ProgressBar
                 android:id="@+id/vProgress"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></ProgressBar>
+                android:layout_height="match_parent">
+            </ProgressBar>
         </RelativeLayout>
 
     </RelativeLayout>
