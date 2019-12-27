@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
         vv.setAnimateDuration(2000);
         vv.setTextPending("wait");
         vv.setText("start");
-        vv.setNormal("ssssss","oja h",null,0);
-        vv.setFail(null,"back nn",null,0);
+        vv.setNormal(" llll;lmk;","",null,0);
+        vv.autoBackOnFail(true,1000, true);
+        vv.setFail(null,"kihas khgo giygliygl gliyg hglgliygiy ggghghg 8ygyiy g",null,0);
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                     vv.setProgress(1);
                 }else {
                     vv.setProgress(-1);
-                    vv.setTextDesc("bbbbbbbbb");
                 }
             }
         });

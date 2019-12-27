@@ -26,6 +26,7 @@
         <attr name="SrcBackground" format="reference"/>
         <attr name="ColorBackSet" format="boolean"/>
         <attr name="ColorDescSet" format="boolean"/>
+        <attr name="ColorText" format="color"/>
         <attr name="ColorNormal" format="color"/>
         <attr name="ColorProgress" format="color"/>
         <attr name="ColorSuccess" format="color"/>
