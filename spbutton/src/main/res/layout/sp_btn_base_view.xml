@@ -96,7 +96,7 @@
                 android:visibility="gone"
                 android:clickable="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_action_name"
+                android:src="@drawable/ic_action_info"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </ImageView>
