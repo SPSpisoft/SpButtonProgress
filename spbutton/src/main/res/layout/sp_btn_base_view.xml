@@ -59,7 +59,7 @@
             android:scrollHorizontally="true"
             android:maxLines="1"
             android:singleLine="true"
-            tools:ignore="HardcodedText">
+            tools:ignore="EllipsizeMaxLines,HardcodedText">
         </TextView>
 
 <!--        <TextView-->
@@ -91,11 +91,22 @@
             android:layout_centerVertical="true"
             android:src="@drawable/abc_vector_test">
 
+            <ImageView
+                android:id="@+id/vIconInfo"
+                android:visibility="gone"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_action_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ImageView>
+
             <com.github.rahatarmanahmed.cpv.CircularProgressView
                 android:id="@+id/vProgress"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </com.github.rahatarmanahmed.cpv.CircularProgressView>
+
         </RelativeLayout>
 
     </RelativeLayout>
