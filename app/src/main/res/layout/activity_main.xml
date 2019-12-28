@@ -26,7 +26,7 @@
     <com.spisoft.spbutton.SProgressButton
         android:id="@+id/spb"
         android:layout_below="@+id/user_sign_in_button"
-        app:TextNormal="hhh"
+        app:TextNormal="hhhv bhb hkhb hb khbb hb hkbk hbkh b hbfkshb h shjshcjjs wd jhwdjwdw"
         app:IconNormal="@mipmap/ic_launcher"
         app:IconSize="30dp"
         android:layout_width="match_parent"

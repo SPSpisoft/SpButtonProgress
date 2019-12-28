@@ -57,6 +57,7 @@
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
+            android:maxLines="1"
             android:singleLine="true"
             tools:ignore="HardcodedText">
         </TextView>

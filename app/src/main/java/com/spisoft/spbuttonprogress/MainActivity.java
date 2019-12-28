@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         vv.setAnimateDuration(2000);
         vv.setTextPending("wait");
         vv.setText("start");
-        vv.setNormal(" llll;lmk;","",null,0);
+        vv.setNormal(" llllhdhhhhhhhhhhjhjah  ja j  hba  hhhhhhhhhhhhkhsd hhhhhhjh shhhhhh f hhhhhhhhhhhhhhhh;lmk;","",null,0);
         vv.autoBackOnFail(true,1000, true);
         vv.setFail(null,"kihas khgo giygliygl gliyg hglgliygiy ggghghg 8ygyiy g",null,0);
         vv.setOnClickListener(new View.OnClickListener() {

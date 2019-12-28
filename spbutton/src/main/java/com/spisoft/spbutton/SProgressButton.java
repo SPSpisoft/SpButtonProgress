@@ -92,6 +92,7 @@ public class SProgressButton extends RelativeLayout {
 //        mIconProgress = context.getResources().getDrawable(R.drawable.ic_autorenew_yellow_a400_24dp);
 //        mIconSuccess = context.getResources().getDrawable(R.drawable.ic_check_circle_green_a700_24dp);
 //        mIconFail = context.getResources().getDrawable(R.drawable.ic_report_red_a700_24dp);
+        mText.setSelected(true);
 
         if(attrs != null){
             final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SProgressButton, 0, 0);
