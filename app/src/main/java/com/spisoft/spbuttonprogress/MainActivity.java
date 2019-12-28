@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         vv.setText("start");
         vv.setInfoKeyShowOnStable(true, null);
         vv.setNormal("hba  hhhhhhhhhhhhkhsd hhhhhhjh shhhhhh f hhhhhhhhhhhhhhhh;lmk;","",null,0);
-        vv.autoBackOnFail(true,1000, true);
+        vv.autoBackOnFail(true,7000, true);
         vv.setFail(null,"kihas khgo giygliygl gliyg hglgliygiy ggghghg 8ygyiy g",null,0);
         vv.setOnClickListener(new View.OnClickListener() {
             @Override

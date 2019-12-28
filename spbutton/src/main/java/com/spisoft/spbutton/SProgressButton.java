@@ -43,7 +43,7 @@ public class SProgressButton extends RelativeLayout {
     private View mViewBase;
     private boolean mColorSet = false, mColorDescSet = false;
     private int mModeStyle = 0;
-    private Animation animSel, animation_rotate , animation_left_to_right , animation_right_to_left, animation_up_to_down, animation_down_to_up;
+    private Animation animSel, animation_rotate, animation_rotate_cb , animation_left_to_right , animation_right_to_left, animation_up_to_down, animation_down_to_up;
     private int CurrentMode;
     private boolean mBackOnFail = false;
     private long mMiliDelay = 400;
@@ -87,6 +87,7 @@ public class SProgressButton extends RelativeLayout {
         mProgress = rootView.findViewById(R.id.vProgress);
 
         animation_rotate = AnimationUtils.loadAnimation(context, R.anim.rotate_indefinitely);
+        animation_rotate_cb = AnimationUtils.loadAnimation(context, R.anim.rotate_top_to_button);
         animation_left_to_right = AnimationUtils.loadAnimation(context, R.anim.ltr_indefinitely);
         animation_right_to_left = AnimationUtils.loadAnimation(context, R.anim.rtl_indefinitely);
         animation_up_to_down = AnimationUtils.loadAnimation(context, R.anim.utd_indefinitely);
@@ -359,49 +360,76 @@ public class SProgressButton extends RelativeLayout {
                 if(mInfoKeyShowOnStable) mIconInfo.setVisibility(VISIBLE);
 
                 if(mBackOnFail) {
-                    mIconInfo.setVisibility(GONE);
-                    mProgress.setVisibility(VISIBLE);
-                    mProgress.setIndeterminate(false);
-                    mProgress.setMaxProgress(5);
-                    mProgress.setProgress(1);
-//                    final int DM = 400;
-                    final Handler handler1 = new Handler();
-                    handler1.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mProgress.setProgress(2);
-                            mText.setText(mDescFail);
-                            if(mSetFailColor) mText.setTextColor(getResources().getColor(R.color.colorFail));
-                            handler1.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mProgress.setProgress(3);
-                                    handler1.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            mProgress.setProgress(4);
-                                            handler1.postDelayed(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    mProgress.setProgress(5);
-                                                    handler1.postDelayed(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            mProgress.setIndeterminate(true);
-                                                            mText.setTextColor(getResources().getColor(R.color.colorText));
-                                                            setProgress(0);
-                                                        }
-                                                    }, mMiliDelay);
-                                                }
-                                            }, mMiliDelay);
-                                        }
-                                    }, mMiliDelay);
-                                }
-                            }, mMiliDelay);
-                        }
-                    }, mMiliDelay);
-                }
+                    mIconInfo.setVisibility(VISIBLE);
+                    mProgress.setVisibility(GONE);
 
+                    animation_rotate_cb.setDuration(mMiliDelay);
+                    mIconInfo.startAnimation(animation_rotate_cb);
+                    animation_rotate_cb.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            mText.setText(mDescFail);
+                            mIconInfo.setImageResource(R.drawable.ic_action_error);
+                            if(mSetFailColor) mText.setTextColor(getResources().getColor(R.color.colorFail));
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            mText.setTextColor(getResources().getColor(R.color.colorText));
+                            mIconInfo.setImageResource(R.drawable.ic_action_info);
+                            setProgress(0);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+
+//                if(mBackOnFail) {
+//                    mIconInfo.setVisibility(GONE);
+//                    mProgress.setVisibility(VISIBLE);
+//                    mProgress.setIndeterminate(false);
+//                    mProgress.setMaxProgress(5);
+//                    mProgress.setProgress(1);
+////                    final int DM = 400;
+//                    final Handler handler1 = new Handler();
+//                    handler1.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            mProgress.setProgress(2);
+//                            mText.setText(mDescFail);
+//                            if(mSetFailColor) mText.setTextColor(getResources().getColor(R.color.colorFail));
+//                            handler1.postDelayed(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    mProgress.setProgress(3);
+//                                    handler1.postDelayed(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            mProgress.setProgress(4);
+//                                            handler1.postDelayed(new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    mProgress.setProgress(5);
+//                                                    handler1.postDelayed(new Runnable() {
+//                                                        @Override
+//                                                        public void run() {
+//                                                            mProgress.setIndeterminate(true);
+//                                                            mText.setTextColor(getResources().getColor(R.color.colorText));
+//                                                            setProgress(0);
+//                                                        }
+//                                                    }, mMiliDelay);
+//                                                }
+//                                            }, mMiliDelay);
+//                                        }
+//                                    }, mMiliDelay);
+//                                }
+//                            }, mMiliDelay);
+//                        }
+//                    }, mMiliDelay);
+                }
                 break;
         }
 
