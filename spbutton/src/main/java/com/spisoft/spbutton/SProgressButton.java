@@ -322,6 +322,10 @@ public class SProgressButton extends RelativeLayout {
         int syncColor = Color.WHITE;
         switch (pMode){
             case 0: //normal
+                mText.setTextColor(getResources().getColor(R.color.colorText));
+                mIconInfo.setImageResource(R.drawable.ic_action_info);
+                mIconInfo.clearAnimation();
+
                 syncColor = mColorNormal;
                 mIcon.clearAnimation();
                 mText.setText(mTextNormal);
@@ -332,6 +336,10 @@ public class SProgressButton extends RelativeLayout {
                     mIconInfo.setVisibility(VISIBLE);
                 break;
             default: //pending
+                mText.setTextColor(getResources().getColor(R.color.colorText));
+                mIconInfo.setImageResource(R.drawable.ic_action_info);
+                mIconInfo.clearAnimation();
+
                 syncColor = mColorProgress;
                 mIcon.startAnimation(animSel);
                 mIcon.setImageDrawable(mIconProgress);
@@ -342,6 +350,10 @@ public class SProgressButton extends RelativeLayout {
                 mProgress.setVisibility(VISIBLE);
                 break;
             case 100: //success
+                mText.setTextColor(getResources().getColor(R.color.colorText));
+                mIconInfo.setImageResource(R.drawable.ic_action_info);
+                mIconInfo.clearAnimation();
+
                 syncColor = mColorSuccess;
                 mIcon.clearAnimation();
                 mIcon.setImageDrawable(mIconSuccess);
@@ -375,8 +387,6 @@ public class SProgressButton extends RelativeLayout {
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            mText.setTextColor(getResources().getColor(R.color.colorText));
-                            mIconInfo.setImageResource(R.drawable.ic_action_info);
                             setProgress(0);
                         }
 
