@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         vv.setNormal("hba  hhhhhhhhhhhhkhsd hhhhhhjh shhhhhh f hhhhhhhhhhhhhhhh;lmk;","",null,0);
         vv.autoBackOnFail(true,7000, true);
         vv.setFail(null,"kihas khgo giygliygl gliyg hglgliygiy ggghghg 8ygyiy g",null,0);
+        vv.setInfo("kkkkkkk","ششششششششششششششششششش سسسسسسسسسسسسسسسسسسسس یییییییییییییییییییی ننننننننننننننننن", getResources().getDrawable(R.drawable.ic_action_add),0)
+        .autoBackOnInfo(true, 1000,true);
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +38,21 @@ public class MainActivity extends AppCompatActivity {
         vv.setOnInfoClickListener(new SProgressButton.OnInfoClickListener() {
             @Override
             public void onEvent() {
-                Toast.makeText(MainActivity.this, "CCCCCCCCc",Toast.LENGTH_SHORT).show();
+                switch (vv.getCurrentMode()){
+                    case 0:
+                        vv.setProgress(101);
+                        Toast.makeText(MainActivity.this, "Info1", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(MainActivity.this, "Info2", Toast.LENGTH_SHORT).show();
+                        break;
+                    case -1:
+                        Toast.makeText(MainActivity.this, "Info3", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 100:
+                        Toast.makeText(MainActivity.this, "Info4", Toast.LENGTH_SHORT).show();
+                        break;
+                }
             }
         });
     }

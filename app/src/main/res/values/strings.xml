@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Progress Button</string>
+    <string name="app_name" translatable="false">Progress Button</string>
     <string name="sps_view_setting">View setting :</string>
     <string name="sps_temp">**SPS TEMP**</string>
 

@@ -5,4 +5,5 @@
     <color name="colorProgress">#A2DAE6</color>
     <color name="colorSuccess">#78C09D</color>
     <color name="colorFail">#EE769D</color>
+    <color name="colorInfo">#4A68B9</color>
 </resources>

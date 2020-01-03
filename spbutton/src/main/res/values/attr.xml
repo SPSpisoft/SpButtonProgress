@@ -48,6 +48,7 @@
         <attr name="IconProgress" format="reference"/>
         <attr name="IconSuccess" format="reference"/>
         <attr name="IconFail" format="reference"/>
+        <attr name="IconInfo" format="reference"/>
         <attr name="IconSize" format="dimension"/>
         <attr name="IconPadding" format="dimension"/>
 

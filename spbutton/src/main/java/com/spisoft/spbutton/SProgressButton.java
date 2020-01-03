@@ -31,23 +31,23 @@ import com.github.rahatarmanahmed.cpv.CircularProgressView;
 public class SProgressButton extends RelativeLayout {
     private View rootView;
     private RelativeLayout mIT;
-    private ImageView mIcon, mIconInfo;
+    private ImageView mIcon, vIconInfo;
     private View mIconE;
     private TextView mText;
     private CircularProgressView mProgress;
-    private Drawable mIconNormal , mIconProgress , mIconSuccess , mIconFail ;
-    private String mTextNormal = "Sign in", mTextProgress = "Progress", mTextSuccess = "Success", mTextFail = "Fail";
-    private String mDescNormal = "", mDescProgress = "", mDescSuccess = "", mDescFail = "";
+    private Drawable mIconNormal , mIconProgress , mIconSuccess , mIconFail , mIconInfo ;
+    private String mTextNormal = "Sign in", mTextProgress = "Progress", mTextSuccess = "Success", mTextFail = "Fail", mTextInfo = "Info";
+    private String mDescNormal = "", mDescProgress = "", mDescSuccess = "", mDescFail = "", mDescInfo = "";
     private int mColorTextDefault = R.color.colorText, mColorNormal = R.color.colorNormal, mColorProgress = R.color.colorProgress,
-            mColorSuccess = R.color.colorSuccess, mColorFail = R.color.colorFail;
+            mColorSuccess = R.color.colorSuccess, mColorFail = R.color.colorFail, mColorInfo = R.color.colorFail;
     private View mViewBase;
     private boolean mColorSet = false, mColorDescSet = false;
     private int mModeStyle = 0;
-    private Animation animSel, animation_rotate, animation_rotate_cb , animation_left_to_right , animation_right_to_left, animation_up_to_down, animation_down_to_up;
+    private Animation animSel, animation_blink, animation_rotate, animation_rotate_cb , animation_left_to_right , animation_right_to_left, animation_up_to_down, animation_down_to_up;
     private int CurrentMode;
-    private boolean mBackOnFail = false;
-    private long mMiliDelay = 400;
-    private boolean mSetFailColor = false;
+    private boolean mBackOnFail = false, mBackOnInfo = false;
+    private long mMiliDelay = 400, mMiliDelayInfo = 600;
+    private boolean mSetFailColor = false, mSetInfoColor = false;
     private Context mContext;
     private OnInfoClickListener mInfoClickListener;
     private boolean mInfoKeyShowOnStable;
@@ -81,19 +81,20 @@ public class SProgressButton extends RelativeLayout {
         mViewBase = rootView.findViewById(R.id.viewBase);
         mIT = rootView.findViewById(R.id.vIT);
         mIcon = rootView.findViewById(R.id.vIcon);
-        mIconInfo = rootView.findViewById(R.id.vIconInfo);
+        vIconInfo = rootView.findViewById(R.id.vIconInfo);
         mIconE = rootView.findViewById(R.id.vIconE);
         mText = rootView.findViewById(R.id.vText);
         mProgress = rootView.findViewById(R.id.vProgress);
 
         animation_rotate = AnimationUtils.loadAnimation(context, R.anim.rotate_indefinitely);
         animation_rotate_cb = AnimationUtils.loadAnimation(context, R.anim.rotate_top_to_button);
+        animation_blink = AnimationUtils.loadAnimation(context, R.anim.blink);
         animation_left_to_right = AnimationUtils.loadAnimation(context, R.anim.ltr_indefinitely);
         animation_right_to_left = AnimationUtils.loadAnimation(context, R.anim.rtl_indefinitely);
         animation_up_to_down = AnimationUtils.loadAnimation(context, R.anim.utd_indefinitely);
         animation_down_to_up = AnimationUtils.loadAnimation(context, R.anim.dtu_indefinitely);
 
-        mIconInfo.setOnClickListener(new OnClickListener() {
+        vIconInfo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mInfoClickListener != null) mInfoClickListener.onEvent();
@@ -168,6 +169,7 @@ public class SProgressButton extends RelativeLayout {
                 mIconProgress = typedArray.getDrawable(R.styleable.SProgressButton_IconProgress);
                 mIconSuccess = typedArray.getDrawable(R.styleable.SProgressButton_IconSuccess);
                 mIconFail = typedArray.getDrawable(R.styleable.SProgressButton_IconFail);
+                mIconInfo = typedArray.getDrawable(R.styleable.SProgressButton_IconInfo);
             }
             int atIconSize = (int) typedArray.getDimension(R.styleable.SProgressButton_IconSize, 50);
             ViewGroup.LayoutParams params = mIcon.getLayoutParams();
@@ -223,17 +225,17 @@ public class SProgressButton extends RelativeLayout {
     public SProgressButton setInfoKeyShow(boolean infoKeyShow, Drawable changeIcon){
         if(infoKeyShow) {
             mProgress.setVisibility(GONE);
-            mIconInfo.setVisibility(VISIBLE);
+            vIconInfo.setVisibility(VISIBLE);
         }
-        else mIconInfo.setVisibility(GONE);
-        if(changeIcon != null) mIconInfo.setImageDrawable(changeIcon);
+        else vIconInfo.setVisibility(GONE);
+        if(changeIcon != null) vIconInfo.setImageDrawable(changeIcon);
         return this;
     }
 
     public SProgressButton setInfoKeyShowOnStable(boolean infoKeyShowOnStable, Drawable changeIcon){
         mInfoKeyShowOnStable = infoKeyShowOnStable;
-        if(mInfoKeyShowOnStable) mIconInfo.setVisibility(VISIBLE);
-        if(changeIcon != null) mIconInfo.setImageDrawable(changeIcon);
+        if(mInfoKeyShowOnStable) vIconInfo.setVisibility(VISIBLE);
+        if(changeIcon != null) vIconInfo.setImageDrawable(changeIcon);
         return this;
     }
 
@@ -249,6 +251,13 @@ public class SProgressButton extends RelativeLayout {
         mBackOnFail = back;
         mMiliDelay = delayMilis;
         mSetFailColor = setFailColor;
+        return this;
+    }
+
+    public SProgressButton autoBackOnInfo(boolean back, long delayMilisInfo, boolean setInfoColor){
+        mBackOnInfo = back;
+        mMiliDelayInfo = delayMilisInfo;
+        mSetInfoColor = setInfoColor;
         return this;
     }
 
@@ -288,6 +297,14 @@ public class SProgressButton extends RelativeLayout {
         return this;
     }
 
+    public SProgressButton setInfo(String text, String textDesc, Drawable drawable, int color){
+        if(text != null) mTextInfo = text;
+        if(textDesc != null) mDescInfo = textDesc;
+        if(drawable != null) mIconInfo = drawable;
+        if(color > 0) mColorInfo = color;
+        return this;
+    }
+
     public SProgressButton setTextDesc(String text, boolean OnSet){
         if(OnSet) mText.setText(text);
         mDescFail = text;
@@ -323,8 +340,8 @@ public class SProgressButton extends RelativeLayout {
         switch (pMode){
             case 0: //normal
                 mText.setTextColor(getResources().getColor(R.color.colorText));
-                mIconInfo.setImageResource(R.drawable.ic_action_info);
-                mIconInfo.clearAnimation();
+                vIconInfo.setImageResource(R.drawable.ic_action_info);
+                vIconInfo.clearAnimation();
 
                 syncColor = mColorNormal;
                 mIcon.clearAnimation();
@@ -333,12 +350,12 @@ public class SProgressButton extends RelativeLayout {
                 mIT.setVisibility(VISIBLE);
                 mProgress.setVisibility(GONE);
                 if(mInfoKeyShowOnStable)
-                    mIconInfo.setVisibility(VISIBLE);
+                    vIconInfo.setVisibility(VISIBLE);
                 break;
             default: //pending
                 mText.setTextColor(getResources().getColor(R.color.colorText));
-                mIconInfo.setImageResource(R.drawable.ic_action_info);
-                mIconInfo.clearAnimation();
+                vIconInfo.setImageResource(R.drawable.ic_action_info);
+                vIconInfo.clearAnimation();
 
                 syncColor = mColorProgress;
                 mIcon.startAnimation(animSel);
@@ -346,13 +363,13 @@ public class SProgressButton extends RelativeLayout {
                 mText.setText(mTextProgress);
                 mProgress.setProgress(pMode);
                 if(mModeStyle > 0) mIT.setVisibility(GONE);
-                mIconInfo.setVisibility(GONE);
+                vIconInfo.setVisibility(GONE);
                 mProgress.setVisibility(VISIBLE);
                 break;
             case 100: //success
                 mText.setTextColor(getResources().getColor(R.color.colorText));
-                mIconInfo.setImageResource(R.drawable.ic_action_info);
-                mIconInfo.clearAnimation();
+                vIconInfo.setImageResource(R.drawable.ic_action_info);
+                vIconInfo.clearAnimation();
 
                 syncColor = mColorSuccess;
                 mIcon.clearAnimation();
@@ -360,7 +377,7 @@ public class SProgressButton extends RelativeLayout {
                 mText.setText(mTextSuccess);
                 if(mModeStyle > 0) mIT.setVisibility(GONE);
                 mProgress.setVisibility(GONE);
-                if(mInfoKeyShowOnStable) mIconInfo.setVisibility(VISIBLE);
+                if(mInfoKeyShowOnStable) vIconInfo.setVisibility(VISIBLE);
                 break;
             case -1: //fail
                 syncColor = mColorFail;
@@ -369,19 +386,19 @@ public class SProgressButton extends RelativeLayout {
                 mText.setText(mTextFail);
                 mIT.setVisibility(VISIBLE);
                 mProgress.setVisibility(GONE);
-                if(mInfoKeyShowOnStable) mIconInfo.setVisibility(VISIBLE);
+                if(mInfoKeyShowOnStable) vIconInfo.setVisibility(VISIBLE);
 
                 if(mBackOnFail) {
-                    mIconInfo.setVisibility(VISIBLE);
+                    vIconInfo.setVisibility(VISIBLE);
                     mProgress.setVisibility(GONE);
 
                     animation_rotate_cb.setDuration(mMiliDelay);
-                    mIconInfo.startAnimation(animation_rotate_cb);
+                    vIconInfo.startAnimation(animation_rotate_cb);
                     animation_rotate_cb.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
                             mText.setText(mDescFail);
-                            mIconInfo.setImageResource(R.drawable.ic_action_error);
+                            vIconInfo.setImageResource(R.drawable.ic_action_error);
                             if(mSetFailColor) mText.setTextColor(getResources().getColor(R.color.colorFail));
                         }
 
@@ -396,49 +413,41 @@ public class SProgressButton extends RelativeLayout {
                         }
                     });
 
+                }
+                break;
+            case 101: //info
+                syncColor = mColorProgress;
+                mIcon.clearAnimation();
+                mText.setText(mTextInfo);
+                mIT.setVisibility(VISIBLE);
+                mProgress.setVisibility(GONE);
+                if(mInfoKeyShowOnStable) vIconInfo.setVisibility(VISIBLE);
 
-//                if(mBackOnFail) {
-//                    mIconInfo.setVisibility(GONE);
-//                    mProgress.setVisibility(VISIBLE);
-//                    mProgress.setIndeterminate(false);
-//                    mProgress.setMaxProgress(5);
-//                    mProgress.setProgress(1);
-////                    final int DM = 400;
-//                    final Handler handler1 = new Handler();
-//                    handler1.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            mProgress.setProgress(2);
-//                            mText.setText(mDescFail);
-//                            if(mSetFailColor) mText.setTextColor(getResources().getColor(R.color.colorFail));
-//                            handler1.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    mProgress.setProgress(3);
-//                                    handler1.postDelayed(new Runnable() {
-//                                        @Override
-//                                        public void run() {
-//                                            mProgress.setProgress(4);
-//                                            handler1.postDelayed(new Runnable() {
-//                                                @Override
-//                                                public void run() {
-//                                                    mProgress.setProgress(5);
-//                                                    handler1.postDelayed(new Runnable() {
-//                                                        @Override
-//                                                        public void run() {
-//                                                            mProgress.setIndeterminate(true);
-//                                                            mText.setTextColor(getResources().getColor(R.color.colorText));
-//                                                            setProgress(0);
-//                                                        }
-//                                                    }, mMiliDelay);
-//                                                }
-//                                            }, mMiliDelay);
-//                                        }
-//                                    }, mMiliDelay);
-//                                }
-//                            }, mMiliDelay);
-//                        }
-//                    }, mMiliDelay);
+                if(mBackOnInfo) {
+                    vIconInfo.setVisibility(VISIBLE);
+                    mProgress.setVisibility(GONE);
+
+                    animation_blink.setDuration(mMiliDelayInfo);
+                    vIconInfo.startAnimation(animation_blink);
+                    animation_blink.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            mText.setText(mDescInfo);
+                            vIconInfo.setImageResource(R.drawable.ic_action_info);
+                            if(mSetInfoColor) mText.setTextColor(getResources().getColor(R.color.colorInfo));
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            setProgress(0);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
                 }
                 break;
         }
