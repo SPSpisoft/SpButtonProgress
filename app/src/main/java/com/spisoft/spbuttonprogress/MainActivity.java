@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         vv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vv.getCurrentMode() <= 0) {
+//                if(vv.getCurrentMode() <= 0) {
                     vv.setProgress(1);
-                }else {
-                    vv.setProgress(-1);
-                }
+//                }else {
+//                    vv.setProgress(-1);
+//                }
             }
         });
         vv.setOnInfoClickListener(new SProgressButton.OnInfoClickListener() {
@@ -55,5 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        vv.setProgress(101);
     }
 }

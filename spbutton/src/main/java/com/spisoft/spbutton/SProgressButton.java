@@ -439,7 +439,9 @@ public class SProgressButton extends RelativeLayout {
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            setProgress(0);
+//                            setProgress(0);
+                            mText.setText(mTextNormal);
+                            mText.setTextColor(getResources().getColor(R.color.colorText));
                         }
 
                         @Override
