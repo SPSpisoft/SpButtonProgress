@@ -10,7 +10,7 @@
 
     <com.spisoft.spbutton.SProgressButton
         android:id="@+id/user_sign_in_button"
-        android:layout_height="@dimen/sps_lpr_sz_50"
+        android:layout_height="50dp"
         android:layout_width="wrap_content"
         app:ModeIconPosition="Right"
         app:TextNormal="@string/action_sign_in"
@@ -21,7 +21,7 @@
         app:IconProgress="@drawable/ic_swap"
         app:IconSuccess="@drawable/ic_check"
         app:IconFail="@drawable/ic_error"
-        app:IconSize="@dimen/sps_lpr_sz_50">
+        app:IconSize="50dp">
     </com.spisoft.spbutton.SProgressButton>
     <com.spisoft.spbutton.SProgressButton
         android:id="@+id/spb"

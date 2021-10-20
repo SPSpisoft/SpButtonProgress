@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         vv.setNormal("hba  hhhhhhhhhhhhkhsd hhhhhhjh shhhhhh f hhhhhhhhhhhhhhhh;lmk;","",null,0);
         vv.autoBackOnFail(true,7000, true);
         vv.setFail(null,"kihas khgo giygliygl gliyg hglgliygiy ggghghg 8ygyiy g",null,0);
-        vv.setInfo("kkkkkkk","ششششششششششششششششششش سسسسسسسسسسسسسسسسسسسس یییییییییییییییییییی ننننننننننننننننن", getResources().getDrawable(R.drawable.ic_action_add),0)
+        vv.setInfo("kkkkkkk","ششششششششششششششششششش سسسسسسسسسسسسسسسسسسسس یییییییییییییییییییی ننننننننننننننننن", getResources().getDrawable(R.drawable.ic_action_info),0)
         .autoBackOnInfo(true, 1000,true);
         vv.setOnClickListener(new View.OnClickListener() {
             @Override

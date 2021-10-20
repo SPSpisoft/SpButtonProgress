@@ -46,12 +46,12 @@
     </style>
 
     <style name="ToolbarTheme" parent="Widget.AppCompat.Toolbar">
-        <item name="android:textSize">@dimen/sps_txt_sz_12</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@assets/font/tahoma</item>
     </style>
 
     <style name="NumberPickerText">
-        <item name="android:textSize">@dimen/sps_txt_sz_18</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="AudioFileInfoOverlayText1">

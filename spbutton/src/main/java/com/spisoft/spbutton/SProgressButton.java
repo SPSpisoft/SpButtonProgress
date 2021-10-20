@@ -157,7 +157,7 @@ public class SProgressButton extends RelativeLayout {
                     break;
             }
 
-            mModeStyle = typedArray.getInt(R.styleable.SProgressButton_ModeStyle, 0);
+            mModeStyle = typedArray.getInt(R.styleable.SProgressButton_SPB_ModeStyle, 0);
 
             Drawable atBackground = typedArray.getDrawable(R.styleable.SProgressButton_SrcBackground);
             if(atBackground != null) mViewBase.setBackground(atBackground);
