@@ -113,7 +113,7 @@ public class SProgressButton extends RelativeLayout {
             mColorDescSet = typedArray.getBoolean(R.styleable.SProgressButton_ColorDescSet, false);
             mProgress.setIndeterminate(typedArray.getBoolean(R.styleable.SProgressButton_Indeterminate, true));
 
-            int atModeAnimation = typedArray.getInt(R.styleable.SProgressButton_AnimMode, 0);
+            int atModeAnimation = typedArray.getInt(R.styleable.SProgressButton_SPB_AnimMode, 0);
             switch (atModeAnimation) {
                 case 0:
                     animSel = animation_rotate;

@@ -15,7 +15,7 @@
         </attr>
 
         <attr name="AnimDuration" format="integer"/>
-        <attr name="AnimMode" format="enum">
+        <attr name="SPB_AnimMode" format="enum">
             <enum name="Rotate" value="0"/>
             <enum name="LeftToRight" value="1"/>
             <enum name="RightToLeft" value="2"/>
